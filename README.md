@@ -29,7 +29,7 @@ in the directory containing the algorithm notebooks designated by the .ipynb ext
 
 This will open up a default web browser to the Jupyter Notebook landing page from which you can open up the required notebook.
 
-<img src="https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/jupyter_landing_page.png" width="500">
+<img src="https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/jupyter_landing_page.png" width="700">
 
 ## How does Ecosystem Algorithms work
 
