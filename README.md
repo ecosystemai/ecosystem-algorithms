@@ -2,7 +2,7 @@
 
 ## What is Ecosystem Algorithms?
 
-Ecosystem Algorithms business layer on top of Ecosystem Notebooks, demonstrating how to effectively use and impletment different business cases.
+Ecosystem Algorithms business layer on top of Ecosystem Notebooks, demonstrating how to effectively use and implement different business cases.
 
 ## Requirements
 
