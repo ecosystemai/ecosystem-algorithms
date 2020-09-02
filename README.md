@@ -7,8 +7,9 @@ Ecosystem Algorithms business layer on top of Ecosystem Notebooks, demonstrating
 ## Requirements
 
 To use any of these algorithms [Ecosystem Notebooks](https://github.com/ecosystemai/ecosystem-algorithms) need to be installed.
-Jupyter Notebook
-Python3
+Access to an Ecosystem API server.
+Jupyter Notebook.
+[Python3](https://www.python.org/downloads/): Was built using Python 3.6, but should work for most Python3 versions.
 
 ## Getting started
 
