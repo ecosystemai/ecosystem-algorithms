@@ -9,24 +9,23 @@ Ecosystem Algorithms contains common business case implementations for Ecosystem
 * To use any of these algorithms [Ecosystem Notebooks](https://github.com/ecosystemai/ecosystem-notebooks) need to be installed
 * Access to an Ecosystem API server
 * [Jupyter Notebook](https://jupyter.org/)
-* [Python 3](https://www.python.org/downloads/): Was built using Python 3.6, but most Python 3 versions will work
-
+* [Python 3](https://www.python.org/downloads/): Was built using Python 3.6, but most Python 3 versions will work.
 
 ## Getting started
 
-To get going with Ecosystem Algorithms, start by installing Jupyter Notebook.
+To begin using Ecosystem Algorithms,  you need to first install Jupyter Notebook.
 
-**Note:** if Ecosystem Notebooks is already installed then all the required software will available.
+**Note:** If Ecosystem Notebooks is already installed, then all the required software should already be in place.
 
-This can be done by running the configure_jupyter.sh shell script, in addition recommended styling options can be added by running the configure_jupyter_styling.sh shell script, but is not required.
+This can be done by running the configure_jupyter.sh shell script. 
+In addition, recommended styling options can be added by running the configure_jupyter_styling.sh shell script. While this is not required, you are welcome to play around with it to personalise the Ecosystem workbench style.
 
-To install the relevant python code add the parent directory(ecosystem-notebooks) to the PYTHONPATH environment variable. 
+To install the relevant python code, add the parent directory (ecosystem-notebooks) to the PYTHONPATH environment variable.
 
-Once Jupyter is installed run the command:
+Once Jupyter is installed, enter the directory containing the notebooks. At the designated .ipynb extension, run the command:
 ```bash
 jupyter notebook
 ```
-in the directory containing the algorithm notebooks designated by the .ipynb extention.
 
 This will open up a default web browser to the Jupyter Notebook landing page from which you can open up one of the desired notebooks. It is from within these notebooks that you can access the Ecosystem Algorithms.
 
