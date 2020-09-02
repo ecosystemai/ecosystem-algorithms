@@ -27,6 +27,7 @@ jupyter notebook
 in the directory containing the algorithm notebooks designated by the .ipynb extention.
 
 This will open up a default web browser to the Jupyter Notebook landing page from which you can open up the required notebook.
+
 ![Jupyter Landing Page](https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/jupyter_landing_page.png "Jupyter Landing Page")
 
 ## How does Ecosystem Algorithms work
@@ -37,3 +38,5 @@ To navigate the notebook, use the table of contents on the left to easily find a
 Logging on is required before any of the api endpoints will function. Depending on the algorithm notebook this will either be a username, password and url endpoint combination or just an url endpoint. This will generate an authentication token that all api calls required to function.
 
 ![Login](https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/login.png "Login")
+
+The Ecosystem Algorithms contains a host of business cases to play around with, whether running the code in place or copying it to be executed on an extranal site.
