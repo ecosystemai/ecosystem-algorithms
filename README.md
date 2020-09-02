@@ -35,5 +35,4 @@ To navigate the notebook, use the table of contents on the left to easily find a
 
 Logging on is required before any of the api endpoints will function. Depending on the algorithm notebook this will either be a username, password and url endpoint combination or just an url endpoint. This will generate an authentication token that all api calls required to function.
 
-![Login1](https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/login1.png "Login1")
-![Login2](https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/login1.png "Login2")
+![Login](https://github.com/ecosystemai/ecosystem-algorithms/blob/master/docs/images/login.png "Login")
