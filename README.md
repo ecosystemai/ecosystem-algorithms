@@ -34,7 +34,7 @@ This will open up a default web browser to the Jupyter Notebook landing page fro
 
 ## How does Ecosystem Algorithms work
 
-From within a chosen notebook, Ecosystem Algorithms can be used.  This coding environment, from which you can edit and run live code, provides the interface with which to utilise the algorithms for business use cases. For easy navigation within any of the notebooks, you can use the table of contents which will be situated on the left.
+From within a chosen notebook, Ecosystem Algorithms can be used. This coding environment, from which you can edit and run live code, provides the interface with which to utilise the algorithms for business use cases. For easy navigation within any of the notebooks, you can use the table of contents which will be situated on the left.
 
 In order for the API endpoints to properly function, you will need to login. Depending on which notebooks you have chosen to use, logging in could require a URL endpoint. Or a username, password and URL combination, which will generate an authentication token. This token must be passed along to the API, then you can begin using Ecosystem Algorithms, and subsequently implementing your business algorithms.
 
