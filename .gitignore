@@ -1,2 +1,4 @@
 *.pyc
 *.ipynb_checkpoints/
+nlp/data/smsspamcollection/readme
+nlp/data/smsspamcollection/SMSSpamCollection
