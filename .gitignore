@@ -8,3 +8,4 @@ nlp/data/events.csv
 nlp/data/meta.csv
 nlp/data/metaex.csv
 nlp/data/topic.csv
+example_data/output.csv
