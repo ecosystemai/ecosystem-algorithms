@@ -6,3 +6,4 @@ jupyter nbextension enable collapsible_headings/main
 jupyter nbextension enable splitcell/splitcell
 jupyter nbextension enable toc2/main
 jupyter nbextension enable hide_input/main
+jupyter nbextension enable freeze/main
