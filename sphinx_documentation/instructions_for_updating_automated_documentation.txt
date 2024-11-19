@@ -1,0 +1,5 @@
+Below are the instructions for updating the automatically generated documentation
+
+- Run "sphinx-apidoc -o source/ ../prediction" in /sphinx_documentation/ where prediction is the path containing the files you want to be included in the docs
+- Add the relevant rst files created in source to the index.rst file
+- Run make html to update the documentation
