@@ -1924,6 +1924,8 @@ def create_openshift_enpoint(name, openshift_server, oc_path, oc_user, version="
         , "0.9.4.2-arm"
         , "0.9.4.3"
         , "0.9.4.3-arm"
+        , "0.9.4.4"
+        , "0.9.4.4-arm"
         , "latest"
         , "arm"
         ]
@@ -1960,74 +1962,75 @@ def create_openshift_enpoint(name, openshift_server, oc_path, oc_user, version="
         openshift_password = getpass.getpass("Enter your OpenShift password")
         with oc.api_server(openshift_server), oc.client_path(oc_path):
             oc.login(oc_user, openshift_password)
-            oc.apply(deployment_config)
-            all_pods_started = False
-            time.sleep(5)
-            while not all_pods_started:
-                all_pods_started = True
-                for pod_obj in oc.selector("pods", labels={"deployment": name}).objects():
-                    pod_name = pod_obj.name()
-                    print(f"Checking status of pod {pod_name}")
-                    log_string = pod_obj.logs()[list(pod_obj.logs().keys())[0]]
-                    if "Start ecosystem with standard memory option" not in log_string:
-                        all_pods_started = False
-                        print("Pod not started")
-                    else:
-                        print("Pod started")
-                if not all_pods_started:
-                    time.sleep(15)
-            print("All pods started successfully")
-
-            print("Checking runtime startup")
-            all_runtimes_started = False
-            while not all_runtimes_started:
-                all_runtimes_started = True
-                for pod_obj in oc.selector("pods", labels={"deployment": name}).objects():
-                    pod_name = pod_obj.name()
-                    print(f"Checking status of runtime on pod {pod_name}")
-                    try:
-                        exec_result = oc.selector(f'pod/{pod_name}').object().execute(
-                            ["curl", "-X", "GET", f"http://localhost:{port}/ping", "-H", "accept: */*"])
-                        if "success" not in exec_result.out():
-                            all_runtimes_started = False
-                            print("Runtime not started")
+            with oc.project(namespace):
+                oc.apply(deployment_config)
+                all_pods_started = False
+                time.sleep(5)
+                while not all_pods_started:
+                    all_pods_started = True
+                    for pod_obj in oc.selector("pods", labels={"deployment": name}).objects():
+                        pod_name = pod_obj.name()
+                        print(f"Checking status of pod {pod_name}")
+                        log_string = pod_obj.logs()[list(pod_obj.logs().keys())[0]]
+                        if "Start ecosystem with standard memory option" not in log_string:
+                            all_pods_started = False
+                            print("Pod not started")
                         else:
-                            print("Runtime started")
-                    except Exception as e:
-                        print(e)
-                        print("Error sending command to runtime")
-                if not all_runtimes_started:
-                    time.sleep(15)
-            print("All runtimes started successfully")
-            try:
-                oc.invoke("expose", ["deployment", name, f"--port={port}"])
-            except Exception as error:
-                serv_error_message = error.result.as_dict()["actions"][0]["err"]
-                if "already exists" in serv_error_message:
-                    print("WARNING: service already exists, if the port has been changed this will not take affect")
-                else:
-                    raise error
-            try:
-                oc.invoke("expose", ["svc", name, f"--port={port}"])
-            except Exception as error:
-                route_error_message = error.result.as_dict()["actions"][0]["err"]
-                if "already exists" in route_error_message:
-                    print("WARNING: route already exists, if the port has been changed this will not take affect")
-                else:
-                    raise error
-            oc.invoke("annotate", ["route", name, "haproxy.router.openshift.io/balance=roundrobin"])
-            oc.invoke("annotate", ["route", name, "haproxy.router.openshift.io/disable_cookies='true'"])
-            route_select = oc.selector("routes", labels={"app": name}).object()
-            route_details = route_select.describe()
-            ind_start = route_details.index("Requested Host:")
-            ind_end = route_details[ind_start + 15:].index(" ")
-            runtime_path = "http://{}".format(route_select.describe()[ind_start + 15:ind_start + 15 + ind_end].strip())
-            print(f"Endpoint created at: {runtime_path}")
-            if cassandra_path is not None:
-                oc.invoke("cp", [cassandra_path, f"{pod_name}:/config/cassandra.conf"])
-            if model_path is not None:
-                for model in model_path:
-                    oc.invoke("cp", [model, f"{pod_name}:/data/models/"])
+                            print("Pod started")
+                    if not all_pods_started:
+                        time.sleep(15)
+                print("All pods started successfully")
+
+                print("Checking runtime startup")
+                all_runtimes_started = False
+                while not all_runtimes_started:
+                    all_runtimes_started = True
+                    for pod_obj in oc.selector("pods", labels={"deployment": name}).objects():
+                        pod_name = pod_obj.name()
+                        print(f"Checking status of runtime on pod {pod_name}")
+                        try:
+                            exec_result = oc.selector(f'pod/{pod_name}').object().execute(
+                                ["curl", "-X", "GET", f"http://localhost:{port}/ping", "-H", "accept: */*"])
+                            if "success" not in exec_result.out():
+                                all_runtimes_started = False
+                                print("Runtime not started")
+                            else:
+                                print("Runtime started")
+                        except Exception as e:
+                            print(e)
+                            print("Error sending command to runtime")
+                    if not all_runtimes_started:
+                        time.sleep(15)
+                print("All runtimes started successfully")
+                try:
+                    oc.invoke("expose", ["deployment", name, f"--port={port}"])
+                except Exception as error:
+                    serv_error_message = error.result.as_dict()["actions"][0]["err"]
+                    if "already exists" in serv_error_message:
+                        print("WARNING: service already exists, if the port has been changed this will not take affect")
+                    else:
+                        raise error
+                try:
+                    oc.invoke("expose", ["svc", name, f"--port={port}"])
+                except Exception as error:
+                    route_error_message = error.result.as_dict()["actions"][0]["err"]
+                    if "already exists" in route_error_message:
+                        print("WARNING: route already exists, if the port has been changed this will not take affect")
+                    else:
+                        raise error
+                oc.invoke("annotate", ["route", name, "haproxy.router.openshift.io/balance=roundrobin"])
+                oc.invoke("annotate", ["route", name, "haproxy.router.openshift.io/disable_cookies='true'"])
+                route_select = oc.selector("routes", labels={"app": name}).object()
+                route_details = route_select.describe()
+                ind_start = route_details.index("Requested Host:")
+                ind_end = route_details[ind_start + 15:].index(" ")
+                runtime_path = "http://{}".format(route_select.describe()[ind_start + 15:ind_start + 15 + ind_end].strip())
+                print(f"Endpoint created at: {runtime_path}")
+                if cassandra_path is not None:
+                    oc.invoke("cp", [cassandra_path, f"{pod_name}:/config/cassandra.conf"])
+                if model_path is not None:
+                    for model in model_path:
+                        oc.invoke("cp", [model, f"{pod_name}:/data/models/"])
     else:
         print(
             "You have opted to complete the deployment without using oc. This will require you to manually copy a number of configurations into the OpenShift web console")

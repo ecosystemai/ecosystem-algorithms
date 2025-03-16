@@ -225,7 +225,7 @@ def create_online_learning(
 
    :return: The UUID identifier for the online learning configuration which should be linked to the deployment for the project.
     """
-    # TODO add error checking and handling
+    # TODO enhance error checking and handling
     # Check for existence of online learning configuration with the same name
     existing_configurations = cp.list_pulse_responder_dynamic(auth)
     if not replace and not update:
@@ -274,24 +274,44 @@ def create_online_learning(
     
     # Get values for contextual variables
     if contextual_variables_contextual_variable_one_name != "":
-        contextual_variable_one_values_pipeline = [
-            {"$group":{"_id":"None","values":{"$addToSet":"$"+contextual_variables_contextual_variable_one_name}}}
-        ]
-        contextual_variable_one_values = dme.post_mongo_db_aggregate_pipeline(
-                auth,
-                {"database": feature_store_database, "collection": feature_store_collection, "pipeline": contextual_variable_one_values_pipeline}
-        )[0]["values"]
+        contextual_variable_value_set_from_virtual_variables = False
+        if virtual_variables is not None:
+            for virtual_var_iter in virtual_variables:
+                if virtual_var_iter["name"] == contextual_variables_contextual_variable_one_name:
+                    contextual_variable_value_set_from_virtual_variables = True
+                    contextual_virtual_variable = virtual_var_iter
+                    contextual_variable_one_values = [contextual_virtual_variable["default"]]
+                    for val_iter in contextual_virtual_variable["buckets"]:
+                        contextual_variable_one_values.append(val_iter["label"])
+        if not contextual_variable_value_set_from_virtual_variables:
+            contextual_variable_one_values_pipeline = [
+                {"$group":{"_id":"None","values":{"$addToSet":"$"+contextual_variables_contextual_variable_one_name}}}
+            ]
+            contextual_variable_one_values = dme.post_mongo_db_aggregate_pipeline(
+                    auth,
+                    {"database": feature_store_database, "collection": feature_store_collection, "pipeline": contextual_variable_one_values_pipeline}
+            )[0]["values"]
     else:
         contextual_variable_one_values = []
     
     if contextual_variables_contextual_variable_two_name != "":
-        contextual_variable_two_values_pipeline = [
-            {"$group":{"_id":"None","values":{"$addToSet":"$"+contextual_variables_contextual_variable_two_name}}}
-        ]
-        contextual_variable_two_values = dme.post_mongo_db_aggregate_pipeline(
-                auth,
-                {"database": feature_store_database, "collection": feature_store_collection, "pipeline": contextual_variable_two_values_pipeline}
-        )[0]["values"]
+        contextual_variable_value_set_from_virtual_variables = False
+        if virtual_variables is not None:
+            for virtual_var_iter in virtual_variables:
+                if virtual_var_iter["name"] == contextual_variables_contextual_variable_two_name:
+                    contextual_variable_value_set_from_virtual_variables = True
+                    contextual_virtual_variable = virtual_var_iter
+                    contextual_variable_two_values = [contextual_virtual_variable["default"]]
+                    for val_iter in contextual_virtual_variable["buckets"]:
+                        contextual_variable_two_values.append(val_iter["label"])
+        if not contextual_variable_value_set_from_virtual_variables:
+            contextual_variable_two_values_pipeline = [
+                {"$group":{"_id":"None","values":{"$addToSet":"$"+contextual_variables_contextual_variable_two_name}}}
+            ]
+            contextual_variable_two_values = dme.post_mongo_db_aggregate_pipeline(
+                    auth,
+                    {"database": feature_store_database, "collection": feature_store_collection, "pipeline": contextual_variable_two_values_pipeline}
+            )[0]["values"]
     else:
         contextual_variable_two_values = []
     
