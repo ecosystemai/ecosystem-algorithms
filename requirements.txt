@@ -1,3 +1,4 @@
 ecosystem-notebooks
 pymongo
 pyyaml
+openshift-client
