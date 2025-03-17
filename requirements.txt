@@ -1,0 +1,3 @@
+ecosystem-notebooks
+pymongo
+pyyaml
