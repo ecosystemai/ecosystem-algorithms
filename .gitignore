@@ -2,10 +2,8 @@
 
 *.pyc
 *.ipynb_checkpoints/
-nlp/data/smsspamcollection/readme
-nlp/data/smsspamcollection/SMSSpamCollection
-nlp/data/events.csv
-nlp/data/meta.csv
-nlp/data/metaex.csv
-nlp/data/topic.csv
-example_data/output.csv
+
+tmp/*
+.idea/*
+
+venv/
