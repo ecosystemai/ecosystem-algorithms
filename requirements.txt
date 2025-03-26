@@ -1,4 +1,4 @@
-ecosystem-notebooks==0.1.31
+ecosystem-notebooks==0.1.32
 pymongo
 pyyaml
 openshift-client
