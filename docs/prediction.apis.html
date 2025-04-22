@@ -1056,7 +1056,7 @@ and a dynamic corpora specifying a default offer.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="prediction.apis.deployment_management.create_openshift_enpoint">
-<span class="sig-prename descclassname"><span class="pre">prediction.apis.deployment_management.</span></span><span class="sig-name descname"><span class="pre">create_openshift_enpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openshift_server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc_user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'0.9.4.3'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment_variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bdp-rts-dev'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tc-bdp-rts-dev-disk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_oc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.deployment_management.create_openshift_enpoint" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.deployment_management.</span></span><span class="sig-name descname"><span class="pre">create_openshift_enpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openshift_server</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc_user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'0.9.5.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment_variables</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bdp-rts-dev'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tc-bdp-rts-dev-disk'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_oc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.deployment_management.create_openshift_enpoint" title="Link to this definition">#</a></dt>
 <dd><p>Create an OpenShift deployment for the ecosystem-runtime using a default configuration and expose the deployment as a route to allow the configuration to be updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1684,6 +1684,23 @@ param: output_level: The level of output to print. Options are “quiet” and �
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.online_learning_management.generate_options_store">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.online_learning_management.</span></span><span class="sig-name descname"><span class="pre">generate_options_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.online_learning_management.generate_options_store" title="Link to this definition">#</a></dt>
+<dd><blockquote>
+<div><p>Generate the options store for the specified online learning configuration.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>name</strong> – The name of the online learning configuration. Either name or uuid must be specified.</p></li>
+<li><p><strong>uuid</strong> – The UUID of the online learning configuration. Either name or uuid must be specified.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="prediction.apis.online_learning_management.online_learning_ecosystem_rewards_setup_feature_store">
 <span class="sig-prename descclassname"><span class="pre">prediction.apis.online_learning_management.</span></span><span class="sig-name descname"><span class="pre">online_learning_ecosystem_rewards_setup_feature_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offer_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offer_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offer_name_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contextual_variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setup_feature_store_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setup_feature_store_collection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.online_learning_management.online_learning_ecosystem_rewards_setup_feature_store" title="Link to this definition">#</a></dt>
 <dd><blockquote>
@@ -1700,6 +1717,23 @@ containing the relevant offers.</p>
 <li><p><strong>contextual_variables</strong> – A dictionary containing the contextual variables names as keys. Each value in the dictionary should be a list containing the possible values of the contextual variables.</p></li>
 <li><p><strong>setup_feature_store_db</strong> – The database to store the setup feature store in.</p></li>
 <li><p><strong>setup_feature_store_collection</strong> – The collection to store the setup feature store in.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.online_learning_management.update_options_store">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.online_learning_management.</span></span><span class="sig-name descname"><span class="pre">update_options_store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.online_learning_management.update_options_store" title="Link to this definition">#</a></dt>
+<dd><blockquote>
+<div><p>Update the options store for the specified online learning configuration.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>name</strong> – The name of the online learning configuration. Either name or uuid must be specified.</p></li>
+<li><p><strong>uuid</strong> – The UUID of the online learning configuration. Either name or uuid must be specified.</p></li>
 </ul>
 </dd>
 </dl>
@@ -2584,7 +2618,9 @@ containing the relevant offers.</p>
 <li><a class="reference internal" href="#prediction-apis-interactions-module">prediction.apis.interactions module</a></li>
 <li><a class="reference internal" href="#module-prediction.apis.online_learning_management">prediction.apis.online_learning_management module</a><ul>
 <li><a class="reference internal" href="#prediction.apis.online_learning_management.create_online_learning"><code class="docutils literal notranslate"><span class="pre">create_online_learning()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.online_learning_management.generate_options_store"><code class="docutils literal notranslate"><span class="pre">generate_options_store()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.online_learning_management.online_learning_ecosystem_rewards_setup_feature_store"><code class="docutils literal notranslate"><span class="pre">online_learning_ecosystem_rewards_setup_feature_store()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.online_learning_management.update_options_store"><code class="docutils literal notranslate"><span class="pre">update_options_store()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-prediction.apis.prediction_engine">prediction.apis.prediction_engine module</a><ul>
