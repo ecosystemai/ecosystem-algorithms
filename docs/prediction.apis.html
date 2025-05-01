@@ -767,6 +767,108 @@ to connect to the target Cassandra servers.</p>
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.data_munging_engine.ecosystem_rewards_beta_box_plots">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.data_munging_engine.</span></span><span class="sig-name descname"><span class="pre">ecosystem_rewards_beta_box_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contextual_variable_one</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contextual_variable_two</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlier_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_low_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.data_munging_engine.ecosystem_rewards_beta_box_plots" title="Link to this definition">#</a></dt>
+<dd><p>Produce box and whisker plot parameters for Beta distributions in the Ecosystem Rewards algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>options_store_collection</strong> – The MongoDB collection containing the Options Store</p></li>
+<li><p><strong>options_store_database</strong> – The MongoDB database containing the Options Store</p></li>
+<li><p><strong>contextual_variable_one</strong> – The MongoDB collection containing the database</p></li>
+<li><p><strong>contextual_variable_one</strong> – The value of contextual variable one for which the distributions should be shown. An empty string will not apply the filter</p></li>
+<li><p><strong>contextual_variable_two</strong> – The value of contextual variable two for which the distributions should be shown. An empty string will not apply the filter</p></li>
+<li><p><strong>outlier_threshold</strong> – The threshold for outliers, this will be used to determine the min and max values for the box and whisker plot. max will be the value of the CDF at 1-outlier_threshold and min will be the value of the CDF at outlier_threshold</p></li>
+<li><p><strong>show_low_data</strong> – If False, plot parameters will not be produced for distributions without both contacts and responses</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries where each dictionary contains the box and whisker plot parameters for an option.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.data_munging_engine.ecosystem_rewards_explore">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.data_munging_engine.</span></span><span class="sig-name descname"><span class="pre">ecosystem_rewards_explore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ecosystemruntime'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_database</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_indexes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore" title="Link to this definition">#</a></dt>
+<dd><p>Estimate the amount of exploration being performed by the Ecosystem Rewards algorithm by determining when the most popular offer in a contextual variable segment is not being recommended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>start_time</strong> – The start time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>end_time</strong> – The end time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>options_store_collection</strong> – The MongoDB collection containing the Options Store</p></li>
+<li><p><strong>options_store_database</strong> – The MongoDB database containing the Options Store</p></li>
+<li><p><strong>deployment_id</strong> – The name of the deployment_id for which the rate of exploration should be quantified</p></li>
+<li><p><strong>logging_collection</strong> – The MongoDB collection containing the contacts logging data</p></li>
+<li><p><strong>logging_database</strong> – The MongoDB database containing the contacts logging data</p></li>
+<li><p><strong>sample_size</strong> – The number of samples to be used to estimate the rate of exploration. A value of 0 will use all data</p></li>
+<li><p><strong>check_indexes</strong> – If True, the function will check if the indexes optimal indexes are present on the logging collection and will create them if necessary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the number of offers considered, the number of offers marked as exploration and the exploration rate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.data_munging_engine.</span></span><span class="sig-name descname"><span class="pre">ecosystem_rewards_explore_approx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ecosystemruntime'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_database</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_indexes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx" title="Link to this definition">#</a></dt>
+<dd><p>Estimate the amount of exploration being performed by the Ecosystem Rewards algorithm by calculating that a given score for an option would be considered exploration given the Beta distributions of the other options with a higher average propensity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>start_time</strong> – The start time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>end_time</strong> – The end time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>options_store_collection</strong> – The MongoDB collection containing the Options Store</p></li>
+<li><p><strong>options_store_database</strong> – The MongoDB database containing the Options Store</p></li>
+<li><p><strong>deployment_id</strong> – The name of the deployment_id for which the rate of exploration should be quantified</p></li>
+<li><p><strong>logging_collection</strong> – The MongoDB collection containing the contacts logging data</p></li>
+<li><p><strong>logging_database</strong> – The MongoDB database containing the contacts logging data</p></li>
+<li><p><strong>sample_size</strong> – The number of samples to be used to estimate the rate of exploration. A value of 0 will use all data</p></li>
+<li><p><strong>threshold</strong> – The value added to an Options propensity when filtering for other options with a higher propensity</p></li>
+<li><p><strong>score_filter</strong> – Specify a score value to be excluded from the analysis, for example if offers are manually added in the post scoring logic they can be given a score of 1 and then excluded using this parameter</p></li>
+<li><p><strong>check_indexes</strong> – If True, the function will check if the indexes optimal indexes are present on the logging collection and will create them if necessary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the the exploration rate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx_context">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.data_munging_engine.</span></span><span class="sig-name descname"><span class="pre">ecosystem_rewards_explore_approx_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options_store_database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ecosystemruntime'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_database</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logging'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_indexes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx_context" title="Link to this definition">#</a></dt>
+<dd><p>Estimate the amount of exploration being performed by the Ecosystem Rewards algorithm by calculating that a given score for an option would be considered exploration given the Beta distributions of the other options with a higher average propensity. The results are split by the contextual Variable values in the Dynamic Interaction configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>start_time</strong> – The start time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>end_time</strong> – The end time for the logging data to be used to estimate the rate of exploration</p></li>
+<li><p><strong>options_store_collection</strong> – The MongoDB collection containing the Options Store</p></li>
+<li><p><strong>options_store_database</strong> – The MongoDB database containing the Options Store</p></li>
+<li><p><strong>deployment_id</strong> – The name of the deployment_id for which the rate of exploration should be quantified</p></li>
+<li><p><strong>logging_collection</strong> – The MongoDB collection containing the contacts logging data</p></li>
+<li><p><strong>logging_database</strong> – The MongoDB database containing the contacts logging data</p></li>
+<li><p><strong>sample_size</strong> – The number of samples to be used to estimate the rate of exploration. A value of 0 will use all data</p></li>
+<li><p><strong>threshold</strong> – The value added to an Options propensity when filtering for other options with a higher propensity</p></li>
+<li><p><strong>score_filter</strong> – Specify a score value to be excluded from the analysis, for example if offers are manually added in the post scoring logic they can be given a score of 1 and then excluded using this parameter</p></li>
+<li><p><strong>check_indexes</strong> – If True, the function will check if the indexes optimal indexes are present on the logging collection and will create them if necessary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries containing the number of offers considered, the contextual variable values and the exploration rate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="prediction.apis.data_munging_engine.enrich_date">
 <span class="sig-prename descclassname"><span class="pre">prediction.apis.data_munging_engine.</span></span><span class="sig-name descname"><span class="pre">enrich_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.data_munging_engine.enrich_date" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1486,6 +1588,23 @@ param: output_level: The level of output to print. Options are “quiet” and �
 <li><p><strong>properties</strong> – The properties to push to the ecosystem-runtime</p></li>
 <li><p><strong>port</strong> – The port to exposed in the deployment</p></li>
 <li><p><strong>use_oc</strong> – A boolean indicating whether to use the oc executable to update the deployment</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="prediction.apis.deployment_management.update_deployment_step">
+<span class="sig-prename descclassname"><span class="pre">prediction.apis.deployment_management.</span></span><span class="sig-name descname"><span class="pre">update_deployment_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#prediction.apis.deployment_management.update_deployment_step" title="Link to this definition">#</a></dt>
+<dd><p>Get a deployment step from a project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-server. Created using the jwt_access package.</p></li>
+<li><p><strong>project_id</strong> – The name of the project containing the deployment step</p></li>
+<li><p><strong>deployment_id</strong> – The name of the deployment step to update</p></li>
+<li><p><strong>version</strong> – The version of the deployment step to update</p></li>
+<li><p><strong>deployment_step</strong> – The new version of the deployment step</p></li>
 </ul>
 </dd>
 </dl>
@@ -2515,6 +2634,10 @@ containing the relevant offers.</p>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.concat_columns2"><code class="docutils literal notranslate"><span class="pre">concat_columns2()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.delete_key"><code class="docutils literal notranslate"><span class="pre">delete_key()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.delete_many_documents"><code class="docutils literal notranslate"><span class="pre">delete_many_documents()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.data_munging_engine.ecosystem_rewards_beta_box_plots"><code class="docutils literal notranslate"><span class="pre">ecosystem_rewards_beta_box_plots()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore"><code class="docutils literal notranslate"><span class="pre">ecosystem_rewards_explore()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx"><code class="docutils literal notranslate"><span class="pre">ecosystem_rewards_explore_approx()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.data_munging_engine.ecosystem_rewards_explore_approx_context"><code class="docutils literal notranslate"><span class="pre">ecosystem_rewards_explore_approx_context()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.enrich_date"><code class="docutils literal notranslate"><span class="pre">enrich_date()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.enrich_date2"><code class="docutils literal notranslate"><span class="pre">enrich_date2()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.data_munging_engine.enrich_fragments"><code class="docutils literal notranslate"><span class="pre">enrich_fragments()</span></code></a></li>
@@ -2581,6 +2704,7 @@ containing the relevant offers.</p>
 <li><a class="reference internal" href="#prediction.apis.deployment_management.tail_openshift_logs"><code class="docutils literal notranslate"><span class="pre">tail_openshift_logs()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.deployment_management.test_deployment"><code class="docutils literal notranslate"><span class="pre">test_deployment()</span></code></a></li>
 <li><a class="reference internal" href="#prediction.apis.deployment_management.udate_properties_and_refresh"><code class="docutils literal notranslate"><span class="pre">udate_properties_and_refresh()</span></code></a></li>
+<li><a class="reference internal" href="#prediction.apis.deployment_management.update_deployment_step"><code class="docutils literal notranslate"><span class="pre">update_deployment_step()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-prediction.apis.ecosystem_generation_engine">prediction.apis.ecosystem_generation_engine module</a><ul>

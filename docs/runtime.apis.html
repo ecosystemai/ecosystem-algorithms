@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="runtime.endpoints package" href="runtime.endpoints.html" /><link rel="prev" title="runtime package" href="runtime.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="prediction" href="modules.html" /><link rel="prev" title="runtime package" href="runtime.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>runtime.apis package - Ecosystem Notebooks 0.1 documentation</title>
@@ -158,20 +158,17 @@
 <ul class="current">
 <li class="toctree-l1 has-children"><a class="reference internal" href="prediction.html">prediction package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of prediction package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="prediction.apis.html">prediction.apis package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prediction.endpoints.html">prediction.endpoints package</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prediction.apis.html">prediction.apis package</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="runtime.html">runtime package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of runtime package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">runtime.apis package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="runtime.endpoints.html">runtime.endpoints package</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">runtime.apis package</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">prediction</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of prediction</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="prediction.html">prediction package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of prediction package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="prediction.apis.html">prediction.apis package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="prediction.endpoints.html">prediction.endpoints package</a></li>
 </ul>
 </li>
 </ul>
@@ -308,6 +305,74 @@
 <section id="module-runtime.apis.predictor_engine">
 <span id="runtime-apis-predictor-engine-module"></span><h2>runtime.apis.predictor_engine module<a class="headerlink" href="#module-runtime.apis.predictor_engine" title="Link to this heading">#</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="runtime.apis.predictor_engine.generate_class">
+<span class="sig-prename descclassname"><span class="pre">runtime.apis.predictor_engine.</span></span><span class="sig-name descname"><span class="pre">generate_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#runtime.apis.predictor_engine.generate_class" title="Link to this definition">#</a></dt>
+<dd><p>Generates a java class file in the runtime from the code in the code parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth</strong> – Token for accessing the ecosystem-runtime. Created using jwt_access.</p></li>
+<li><p><strong>code</strong> – The code to be converted to a java class.</p></li>
+<li><p><strong>package_name</strong> – The package name to be used for the java class.</p></li>
+<li><p><strong>class_name</strong> – The class name to be used for the java class.</p></li>
+<li><p><strong>output_dir</strong> – The directory to which the java class will be written.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the details of the generated java class.</p>
+</dd>
+</dl>
+<p>EXAMPLES:</p>
+<p>Getting the post scoring code for a deployment, compiling the java code and pushing the resulting deployment to a runtime endpoint.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect to the runtime and server</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">jwt_access</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">(</span><span class="n">server_path</span><span class="p">,</span> <span class="n">server_user</span><span class="p">,</span> <span class="n">ecosystem_password</span><span class="p">)</span>
+<span class="n">auth_runtime</span> <span class="o">=</span> <span class="n">access</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">(</span><span class="n">runtime_path</span><span class="p">)</span>
+<span class="c1"># Specify the deployment</span>
+<span class="n">deployment_id</span> <span class="o">=</span> <span class="s2">&quot;offer_recommend_dynamic&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;001&quot;</span>
+<span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;Community Edition Recommender&quot;</span>
+
+<span class="c1"># Get the deployment step and extract the post scoring logic</span>
+<span class="n">deployment_step</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">get_deployment_step</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+<span class="n">post_score_code</span> <span class="o">=</span> <span class="n">deployment_step</span><span class="p">[</span><span class="s2">&quot;plugins&quot;</span><span class="p">][</span><span class="s2">&quot;post_score_class_code&quot;</span><span class="p">]</span>
+<span class="c1"># Compile the post scoring logic file and add the new file name to the deployment step</span>
+<span class="n">compile_results</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">generate_class</span><span class="p">(</span><span class="n">auth_runtime</span><span class="p">,</span> <span class="n">post_score_code</span><span class="p">)</span>
+<span class="n">deployment_step</span><span class="p">[</span><span class="s2">&quot;plugins&quot;</span><span class="p">][</span><span class="s2">&quot;post_score_class_text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">compile_results</span><span class="p">[</span><span class="s2">&quot;javaFileName&quot;</span><span class="p">]</span>
+<span class="c1"># Save the new deployment step</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">update_deployment_step</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">deployment_id</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">deployment_step</span><span class="p">)</span>
+
+<span class="c1">#Push deployment and produce properties file</span>
+<span class="n">push_result</span> <span class="o">=</span> <span class="n">ge</span><span class="o">.</span><span class="n">process_push</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span><span class="n">deployment_step</span><span class="p">)</span>
+<span class="k">if</span> <span class="s2">&quot;ErrorMessage&quot;</span> <span class="ow">in</span> <span class="n">push_result</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">push_result</span><span class="p">[</span><span class="s2">&quot;ErrorMessage&quot;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">push_result</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>An example of the response returned as a result of the class generation.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;packagePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;com/ecosystem/plugin/customer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outputDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/app&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fullyQualifiedClassName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;com.ecosystem.plugin.customer.PlatformDynamicEngagement_39dhk&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;methods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;getPostPredict&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;returnType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;void&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;getPostPredict&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;returnType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;class org.json.JSONObject&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;javaFileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PlatformDynamicEngagement_39dhk.java&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;className&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PlatformDynamicEngagement&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;classNameUnique&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PlatformDynamicEngagement_39dhk&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="runtime.apis.predictor_engine.generate_key">
 <span class="sig-prename descclassname"><span class="pre">runtime.apis.predictor_engine.</span></span><span class="sig-name descname"><span class="pre">generate_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#runtime.apis.predictor_engine.generate_key" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -342,26 +407,21 @@ the ecosystem-runtime.</p>
 </dl>
 <p>EXAMPLES:</p>
 <p>Call the invocations endpoint for a deployment with the deployment_id of “demo_deployment” and the customer lookup
-of 1234567.
-.. code-block:: python</p>
-<blockquote>
-<div><dl>
-<dt>offer_response = o.invocations(</dt><dd><blockquote>
-<div><p>auth,
-{
-“campaign”: “demo_deployment”,
-“subcampaign”: “none”,
-“channel”: “notebooks”,
-“customer”: 1234567,
-“userid”: “ecosystem”,
-“numberoffers”: 4,
-“params”: “{}”
-}</p>
-</div></blockquote>
-<p>)</p>
-</dd>
-</dl>
-</div></blockquote>
+of 1234567.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">offer_response</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">invocations</span><span class="p">(</span>
+                                <span class="n">auth</span><span class="p">,</span>
+                                <span class="p">{</span>
+                                <span class="s2">&quot;campaign&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_deployment&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;subcampaign&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;channel&quot;</span><span class="p">:</span> <span class="s2">&quot;notebooks&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="mi">1234567</span><span class="p">,</span>
+                                <span class="s2">&quot;userid&quot;</span><span class="p">:</span> <span class="s2">&quot;ecosystem&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;numberoffers&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+                                <span class="p">}</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -639,12 +699,12 @@ of 1234567.
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="runtime.endpoints.html">
+          <a class="next-page" href="modules.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">runtime.endpoints package</div>
+                <div class="title">prediction</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -709,6 +769,7 @@ of 1234567.
 </ul>
 </li>
 <li><a class="reference internal" href="#module-runtime.apis.predictor_engine">runtime.apis.predictor_engine module</a><ul>
+<li><a class="reference internal" href="#runtime.apis.predictor_engine.generate_class"><code class="docutils literal notranslate"><span class="pre">generate_class()</span></code></a></li>
 <li><a class="reference internal" href="#runtime.apis.predictor_engine.generate_key"><code class="docutils literal notranslate"><span class="pre">generate_key()</span></code></a></li>
 <li><a class="reference internal" href="#runtime.apis.predictor_engine.get_offer_recommendations"><code class="docutils literal notranslate"><span class="pre">get_offer_recommendations()</span></code></a></li>
 <li><a class="reference internal" href="#runtime.apis.predictor_engine.get_personality_recommender"><code class="docutils literal notranslate"><span class="pre">get_personality_recommender()</span></code></a></li>
